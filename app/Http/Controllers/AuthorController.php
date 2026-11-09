@@ -12,7 +12,7 @@ class AuthorController extends Controller
     public function index(): JsonResponse
     {
         return response()->json([
-            'data' => Author::with('books')->get(),
+            'data' => Author::with('books.genre')->get(),
         ]);
     }
 
@@ -32,7 +32,7 @@ class AuthorController extends Controller
     public function show(Author $author): JsonResponse
     {
         return response()->json([
-            'data' => $author->load('books'),
+            'data' => $author->load('books.genre'),
         ]);
     }
 
@@ -53,7 +53,7 @@ class AuthorController extends Controller
         $author->update($validated);
 
         return response()->json([
-            'data' => $author->load('books'),
+            'data' => $author->load('books.genre'),
         ]);
     }
 
